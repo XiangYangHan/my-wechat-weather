@@ -1,4 +1,7 @@
-.title {
+.temp {
   margin-top: 300rpx;
   text-align: center;
+  font-size: 200rpx;
+  line-height: 280rpx; /*行高通常为字号大小的1.4倍*/
+  opacity: 0.8; /*设置文字颜色深度*/
 }
