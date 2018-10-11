@@ -3,19 +3,23 @@ const weatherMap = {
   , cloudy: '多云'
   , overcase: '阴天'
   , lightrain: '小雨'
-  , heavyraid: '中雨'
+  , heavyrain: '中雨'
   , snow: '雪'
+}
+
+const backgroundMap = {
+  sunny: '#CDEEFD'
+  , cloudy: '#DEEEF6'
+  , overcase: '#C6CED2'
+  , lightrain: '#BDD5E1'
+  , heavyrain: '#C5CCD0'
+  , snow: '#AAE1FC'
 }
 
 Page({
   data: {
-    now: {
-      temp: 15,
-      weather: '阴天'
-    }
   },
   onLoad() {
-    console.log('Hello World!');
     wx.request({
       url: 'https://test-miniprogram.com/api/weather/now?city=上海市',
       data: {
@@ -26,8 +30,13 @@ Page({
         let weather = result.now.weather;
         console.log(temp, weather);
         this.setData({
-          'now.temp': temp
+          'now.temp': temp + '°'
           , 'now.weather': weatherMap[weather]
+          , 'now.weatherBackground': '/images/' +  weather + '-bg.png'
+        })
+        wx.setNavigationBarColor({
+          frontColor: '#000000',
+          backgroundColor: backgroundMap[weather],
         })
       }
     })
