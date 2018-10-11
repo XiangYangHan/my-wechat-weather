@@ -1,4 +1,10 @@
 Page({
+  data: {
+    now: {
+      temp: 15,
+      weather: '阴天'
+    }
+  },
   onLoad() {
     console.log('Hello World!');
     wx.request({
