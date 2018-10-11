@@ -1,7 +1,7 @@
 const weatherMap = {
   sunny: '晴天'
   , cloudy: '多云'
-  , overcase: '阴天'
+  , overcast: '阴天'
   , lightrain: '小雨'
   , heavyrain: '中雨'
   , snow: '雪'
@@ -10,7 +10,7 @@ const weatherMap = {
 const backgroundMap = {
   sunny: '#CDEEFD'
   , cloudy: '#DEEEF6'
-  , overcase: '#C6CED2'
+  , overcast: '#C6CED2'
   , lightrain: '#BDD5E1'
   , heavyrain: '#C5CCD0'
   , snow: '#AAE1FC'
