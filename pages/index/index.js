@@ -20,10 +20,16 @@ Page({
   data: {
   },
   onLoad() {
+    this.updateNow();
+  }, 
+  onPullDownRefresh() {
+    this.updateNow(wx.stopPullDownRefresh);
+  }, 
+  updateNow(stopPullDownCallback) {
     wx.request({
       url: 'https://test-miniprogram.com/api/weather/now?city=上海市',
       data: {
-      }, 
+      },
       success: res => {
         let result = res.data.result;
         let temp = result.now.temp;
@@ -32,13 +38,14 @@ Page({
         this.setData({
           'now.temp': temp + '°'
           , 'now.weather': weatherMap[weather]
-          , 'now.weatherBackground': '/images/' +  weather + '-bg.png'
+          , 'now.weatherBackground': '/images/' + weather + '-bg.png'
         })
         wx.setNavigationBarColor({
           frontColor: '#000000',
           backgroundColor: backgroundMap[weather],
         })
-      }
+      }, 
+      complete: () => stopPullDownCallback && stopPullDownCallback()
     })
   }
 })
