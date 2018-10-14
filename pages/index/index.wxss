@@ -29,9 +29,9 @@
 }
 
 .forecast {
-  display: flex; /*子视图横向排列*/
-  justify-content: center;
-  align-items: center;
+  display: flex; /*子视图横向排列，并且全部变成行内元素*/
+  justify-content: center; /*横向居中对齐*/
+  align-items: center; /*垂直居中对齐*/
   margin-top: 40rpx;
 }
 
@@ -44,4 +44,8 @@
   font-size: 30rpx;
   line-height: 42rpx;
   opacity: 0.5;
+}
+
+.forecast-temp {
+  display: flex;
 }
