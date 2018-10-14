@@ -34,7 +34,7 @@ Page({
         let result = res.data.result;
         let temp = result.now.temp;
         let weather = result.now.weather;
-        console.log(temp, weather);
+        console.log(temp, weather, result);
         this.setData({
           'now.temp': temp + '°'
           , 'now.weather': weatherMap[weather]
