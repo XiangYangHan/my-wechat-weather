@@ -33,6 +33,7 @@
   justify-content: center; /*横向居中对齐*/
   align-items: center; /*垂直居中对齐*/
   margin-top: 40rpx;
+  margin-bottom: 45rpx;
 }
 
 .forecast-icon {
@@ -46,6 +47,16 @@
   opacity: 0.5;
 }
 
-.forecast-temp {
+.forecast-list {
   display: flex;
+}
+.forecast-item {
+  display: flex;
+  flex-direction: column;
+  /* flex-grow: 1; */
+  flex-shrink: 0; /*默认为1，指父容器空间不足时均安比例压缩尺寸。设为0表示都不压缩*/
+  width: 200rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  text-align: center;
 }

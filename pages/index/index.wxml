@@ -7,6 +7,8 @@
   <image class='forecast-icon' src='/images/time-icon.png'></image>
   <view class='forecast-text'>未来24小时天气预报</view>
 </view>
-<view class='forecast-temp'>
-  <view wx:for="{{[1,2,3,4,5]}}">{{item}}</view>
-</view>
+<scroll-view scroll-x>
+  <view class='forecast-list'>
+    <view class='forecast-item' wx:for="{{forecast}}">{{item}}</view>
+  </view>
+</scroll-view>
