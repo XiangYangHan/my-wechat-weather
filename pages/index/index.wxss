@@ -31,7 +31,7 @@
 .forecast {
   display: flex; /*子视图横向排列，并且全部变成行内元素*/
   justify-content: center; /*横向居中对齐*/
-  align-items: center; /*垂直居中对齐*/
+  align-items: center; /*子元素中心点居中对齐*/
   margin-top: 40rpx;
   margin-bottom: 45rpx;
 }
@@ -55,8 +55,23 @@
   flex-direction: column;
   /* flex-grow: 1; */
   flex-shrink: 0; /*默认为1，指父容器空间不足时均安比例压缩尺寸。设为0表示都不压缩*/
-  width: 200rpx;
+  align-items: center;
+  width: 150rpx;
+  font-size: 40rpx;
+  line-height: 56rpx;
+}
+
+.forecast-time {
   font-size: 30rpx;
   line-height: 42rpx;
-  text-align: center;
+}
+.forecast-weather {
+  margin-top: 50rpx;
+  margin-bottom: 46rpx;
+  width: 90rpx;
+  height: 90rpx;
+}
+.forecast-temp {
+  font-size: 40rpx;
+  line-height: 56rpx;
 }
