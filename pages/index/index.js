@@ -32,33 +32,37 @@ Page({
       },
       success: res => {
         let result = res.data.result;
-        let temp = result.now.temp;
-        let weather = result.now.weather;
-        console.log(temp, weather, result);
-        this.setData({
-          'now.temp': temp + '°'
-          , 'now.weather': weatherMap[weather]
-          , 'now.weatherBackground': '/images/' + weather + '-bg.png'
-        })
-        wx.setNavigationBarColor({
-          frontColor: '#000000',
-          backgroundColor: backgroundMap[weather],
-        })
-
-        //set forcast
-        let forecast = [];
-        let nowHour = new Date().getHours();
-        for (let i = 0; i < 24; i += 3) {
-          forecast.push({
-            time : (i + nowHour) % 24 + '时'
-            , iconPath: '/images/' + result.forecast[i / 3].weather + '-icon.png'
-            , temp: result.forecast[i / 3].temp + '°'
-          })
-        }
-        forecast[0].time = '现在';
-        this.setData({'forecast': forecast})
+        this.setNow(result);
+        this.setForecast(result);
       }, 
       complete: () => stopPullDownCallback && stopPullDownCallback()
     })
+  },
+  setNow(result) {
+    let temp = result.now.temp;
+    let weather = result.now.weather;
+    console.log(temp, weather, result);
+    this.setData({
+      'now.temp': temp + '°'
+      , 'now.weather': weatherMap[weather]
+      , 'now.weatherBackground': '/images/' + weather + '-bg.png'
+    })
+    wx.setNavigationBarColor({
+      frontColor: '#000000',
+      backgroundColor: backgroundMap[weather],
+    })
+  },
+  setForecast(result) {
+    let forecast = [];
+    let nowHour = new Date().getHours();
+    for (let i = 0; i < 8; i += 1) {
+      forecast.push({
+        time: (i * 3 + nowHour) % 24 + '时'
+        , iconPath: '/images/' + result.forecast[i].weather + '-icon.png'
+        , temp: result.forecast[i].temp + '°'
+      })
+    }
+    forecast[0].time = '现在';
+    this.setData({ 'forecast': forecast })    
   }
 })
