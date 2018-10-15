@@ -56,7 +56,7 @@
   /* flex-grow: 1; */
   flex-shrink: 0; /*默认为1，指父容器空间不足时均安比例压缩尺寸。设为0表示都不压缩*/
   align-items: center;
-  width: 150rpx;
+  width: 140rpx;
   font-size: 40rpx;
   line-height: 56rpx;
 }

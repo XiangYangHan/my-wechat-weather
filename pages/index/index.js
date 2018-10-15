@@ -51,8 +51,8 @@ Page({
         for (let i = 0; i < 24; i += 3) {
           forecast.push({
             time : (i + nowHour) % 24 + '时'
-            , iconPath: '/images/sunny-icon.png'
-            , temp: '12°'
+            , iconPath: '/images/' + result.forecast[i / 3].weather + '-icon.png'
+            , temp: result.forecast[i / 3].temp + '°'
           })
         }
         forecast[0].time = '现在';
