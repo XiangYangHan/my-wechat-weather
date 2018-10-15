@@ -18,7 +18,6 @@ const backgroundMap = {
 
 Page({
   data: {
-    forecast: [1, 2, 3, 4, 5, 6, 7]
   },
   onLoad() {
     this.updateNow();
@@ -45,6 +44,19 @@ Page({
           frontColor: '#000000',
           backgroundColor: backgroundMap[weather],
         })
+
+        //set forcast
+        let forecast = [];
+        let nowHour = new Date().getHours();
+        for (let i = 0; i < 24; i += 3) {
+          forecast.push({
+            time : (i + nowHour) % 24 + '时'
+            , iconPath: '/images/sunny-icon.png'
+            , temp: '12°'
+          })
+        }
+        forecast[0].time = '现在';
+        this.setData({'forecast': forecast})
       }, 
       complete: () => stopPullDownCallback && stopPullDownCallback()
     })
