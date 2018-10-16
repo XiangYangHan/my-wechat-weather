@@ -34,6 +34,7 @@ Page({
         let result = res.data.result;
         this.setNow(result);
         this.setForecast(result);
+        this.setToday(result);
       }, 
       complete: () => stopPullDownCallback && stopPullDownCallback()
     })
@@ -64,5 +65,12 @@ Page({
     }
     forecast[0].time = '现在';
     this.setData({ 'forecast': forecast })    
+  },
+  setToday(result) {
+    let today = new Date();
+    this.setData({
+      todayDate: `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()} 今天`
+      , todayTemp: `${result.today.minTemp}° - ${result.today.maxTemp}°`
+    });
   }
 })
