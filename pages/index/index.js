@@ -72,5 +72,8 @@ Page({
       todayDate: `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()} 今天`
       , todayTemp: `${result.today.minTemp}° - ${result.today.maxTemp}°`
     });
+  }, 
+  onTapDayWeather() {
+    wx.showToast()
   }
 })
