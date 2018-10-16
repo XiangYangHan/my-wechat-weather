@@ -1,12 +1,13 @@
 {
-  "pages":[
-    "pages/index/index"
+  "pages": [
+    "pages/index/index",
+    "pages/list/list"
   ],
-  "window":{
-    "backgroundTextStyle":"text",
+  "window": {
+    "backgroundTextStyle": "text",
     "navigationBarBackgroundColor": "#FFF",
     "navigationBarTitleText": "Hans天气",
-    "navigationBarTextStyle":"black", 
+    "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   }
 }
