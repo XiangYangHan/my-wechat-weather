@@ -16,10 +16,18 @@ const backgroundMap = {
   , snow: '#AAE1FC'
 }
 
+const QQMapWX = require('../../libs/qqmap-wx-jssdk.js')
+
+var qqmap;
 Page({
   data: {
   },
   onLoad() {
+    this.qqmapsdk = new QQMapWX({
+      key: 'ISXBZ-QQECU-TSOVP-2RKEK-AJKMH-NCFQ4'
+    });
+    console.log(this.qqmapsdk);
+    qqmap = this.qqmapsdk;
     this.updateNow();
   }, 
   onPullDownRefresh() {
@@ -42,7 +50,6 @@ Page({
   setNow(result) {
     let temp = result.now.temp;
     let weather = result.now.weather;
-    console.log(temp, weather, result);
     this.setData({
       'now.temp': temp + '°'
       , 'now.weather': weatherMap[weather]
@@ -64,7 +71,7 @@ Page({
       })
     }
     forecast[0].time = '现在';
-    this.setData({ 'forecast': forecast })    
+    this.setData({ 'forecast': forecast });
   },
   setToday(result) {
     let today = new Date();
@@ -76,6 +83,28 @@ Page({
   onTapDayWeather() {
     wx.navigateTo({
       url: '/pages/list/list',
+    })
+  },
+  onTapLocation() {
+    wx.getLocation({
+      success: function(res) {
+        console.log(res.latitude, res.longitude);
+        console.log(qqmap);
+        console.log(this.qqmapsdk);
+        qqmap.reverseGeocoder({
+          location: {
+            latitude: res.latitude
+            , longitude: res.longitude
+          },
+          success: res => {
+            let city = res.result.address_component.city;
+            console.log(city);
+          }, 
+          complete: res => {
+            console.log(res);
+          }
+        })
+      },
     })
   }
 })
