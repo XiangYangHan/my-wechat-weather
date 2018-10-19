@@ -17,8 +17,6 @@ const backgroundMap = {
 }
 
 const QQMapWX = require('../../libs/qqmap-wx-jssdk.js')
-
-var qqmap;
 Page({
   data: {
   },
@@ -26,8 +24,6 @@ Page({
     this.qqmapsdk = new QQMapWX({
       key: 'ISXBZ-QQECU-TSOVP-2RKEK-AJKMH-NCFQ4'
     });
-    console.log(this.qqmapsdk);
-    qqmap = this.qqmapsdk;
     this.updateNow();
   }, 
   onPullDownRefresh() {
@@ -87,11 +83,8 @@ Page({
   },
   onTapLocation() {
     wx.getLocation({
-      success: function(res) {
-        console.log(res.latitude, res.longitude);
-        console.log(qqmap);
-        console.log(this.qqmapsdk);
-        qqmap.reverseGeocoder({
+      success: res => {
+        this.qqmapsdk.reverseGeocoder({
           location: {
             latitude: res.latitude
             , longitude: res.longitude
