@@ -19,6 +19,8 @@ const backgroundMap = {
 const QQMapWX = require('../../libs/qqmap-wx-jssdk.js')
 Page({
   data: {
+    city: '上海市'
+    , locationTipsText: '点击获取当前位置'
   },
   onLoad() {
     this.qqmapsdk = new QQMapWX({
@@ -31,8 +33,9 @@ Page({
   }, 
   updateNow(stopPullDownCallback) {
     wx.request({
-      url: 'https://test-miniprogram.com/api/weather/now?city=上海市',
+      url: 'https://test-miniprogram.com/api/weather/now',
       data: {
+        city: this.data.city
       },
       success: res => {
         let result = res.data.result;
@@ -91,7 +94,12 @@ Page({
           },
           success: res => {
             let city = res.result.address_component.city;
-            console.log(city);
+            // console.log(city);
+            this.setData({
+              city: city
+              , locationTipsText: ''
+            });
+            this.updateNow();
           }, 
           complete: res => {
             console.log(res);
